@@ -1,0 +1,66 @@
+<template>                                                                   
+    <div>                                                                      
+      <h2>Add/Edit Subscriber</h2>                                             
+      <form @submit.prevent="submitForm">                                      
+        <label for="name">Name:</label>                                        
+        <input type="text" id="name" v-model="form.name" required>             
+        <label for="username">Username:</label>                                
+        <input type="text" id="username" v-model="form.username" required>
+        <label for="vlan">VLAN:</label>
+        <input type="text" id="vlan" v-model="form.vlan" required>
+        <label for="password">Password:</label>
+        <input type="text" id="password" v-model="form.password" required>
+        <label for="mac">MAC:</label>
+        <input type="text" id="mac" v-model="form.mac" required>
+        <button type="submit">Save</button>                                    
+      </form>                                                                  
+    </div>                                                                     
+</template>                                                                  
+                                                                               
+  <script>                                                                     
+  export default {                                                             
+    name: 'SubscriberForm',                                                    
+    data() {                                                                   
+      return {                                                                 
+        form: {                                                                
+          name: '',                                                            
+          username: '',                                                        
+        },
+        message: '',
+      };                                                                       
+    },                                                                         
+    methods: {                                                                 
+      submitForm() {                                                           
+        // Logic to submit the form and save the subscriber
+        // to the database would go here.
+        const url = 'https://fr-api.netcoms.rs/api/v1/users/add';
+        const data = {
+          name: this.form.name,
+          username: this.form.username,
+          vlan: this.form.vlan,
+          password: this.form.password,
+          mac: this.form.mac,
+        };
+        const headers = {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        }
+        fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.data = data;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+
+
+      },                                                                       
+    },                                                                         
+  };                                                                           
+  </script>
