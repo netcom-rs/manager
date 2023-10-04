@@ -10,7 +10,7 @@ import api from './api';
                                                                              
 const routes = [                                                             
   {                                                                          
-    path: '/',                                                               
+    path: '/manager',                                                               
     name: 'Home',                                                            
     component: HomePage,
     meta: {                                                                  
@@ -18,12 +18,12 @@ const routes = [
     },
   },
   {
-    path: '/login',
+    path: '/manager/login',
     name: 'Login',
     component: Login,
   },
   {
-    path: '/logout',
+    path: '/manager/logout',
     beforeEnter(to, from, next) {
       localStorage.removeItem('token');
       next('/login');
@@ -31,7 +31,7 @@ const routes = [
     name: 'Logout',
   },
   {                                                                          
-    path: '/subscribers',                                                    
+    path: '/manager/subscribers',                                                    
     name: 'SubscriberList',                                                  
     component: SubscriberList,
     meta: {                                                                  
@@ -39,7 +39,7 @@ const routes = [
     },
   },
   {
-     path: '/subscribers/:id',
+     path: '/manager/subscribers/:id',
      name: 'SubscriberDetails',
      component: SubscriberDetails,
       meta: {
@@ -47,7 +47,7 @@ const routes = [
       },
   },
   {
-    path: '/add',
+    path: '/manager/add',
     name: 'SubscriberForm',
     component: SubscriberForm,
       meta: {
@@ -55,7 +55,7 @@ const routes = [
       },
   },
   {
-    path: '/stats',
+    path: '/manager/stats',
     name: 'Statistics',
     component: RadiusStats,
       meta: {
@@ -64,8 +64,9 @@ const routes = [
   }
 ];                                                                           
                                                                              
-const router = createRouter({                                                
-  history: createWebHistory(),                                               
+const router = createRouter({
+  mode: 'history',
+  history: createWebHistory(),
   routes,                                                                    
 });
 
