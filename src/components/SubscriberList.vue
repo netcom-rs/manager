@@ -151,7 +151,8 @@ export default {
 .search {
   width: 50%;
   height: 100%;
-  margin: 0 left;
-  float: left;
+  margin: 0 0;
+  float: none;
+  position: relative;
 }
 </style>
