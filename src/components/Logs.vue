@@ -5,7 +5,7 @@
         :rows="filteredUsers"
         :search-options="{ enabled: true, placeholder: 'Search Logs' }"
         :pagination-options="{ enabled: true, jumpFirstOrLast : true, perPage: 10, mode: 'pages', perPageDropdown: [10, 20, 30, 40, 50] }"
-        :sort-options="{ enabled: true, initialSortBy: {field: 'id', type: 'desc'} }"
+        :sort-options="{ enabled: true, initialSortBy: {field: 'formatted_authdate', type: 'desc'} }"
         :lineNumbers="true">
     </vue-good-table>
     </div>
