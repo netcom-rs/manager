@@ -149,10 +149,10 @@ export default {
 
 <style scoped>
 .search {
-  width: 50%;
+  width: 100%;
   height: 100%;
-  margin: 0 0;
-  float: none;
+  margin: 0 left;
+  /**float: none; */
   position: relative;
 }
 </style>
