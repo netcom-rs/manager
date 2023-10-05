@@ -103,22 +103,23 @@ export default {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
       try {
-        const response = await api.get('/users/vlan', {
+        await api.get('/users/vlan', {
           headers
+        })
+        .then((response) => this.form.vlan = response.data.next_vlan)
+        .catch(error => {
+          console.error('Error fetching data:', error);
         });
-        if(response != null && response.data != null && response.data.message === 'success'){
-          var vlan = response.data['next_vlan'];
-          return vlan;
-        }
       } catch (error) {
-        console.error('Failed fetching next vlan', error);
+        console.error('Error fetching data:', error);
       }
     },
     async submitForm() {                                                           
         const headers = {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json',
-        }
+        };
+        this.loading = true;
         try {
             const post = await api.post('/users/create', {
                   //name: this.form.name,

@@ -16,6 +16,9 @@
         <li class="navigation__item">
           <router-link to="/stats" class="navigation__link">Statistics</router-link>
         </li>
+        <li class="navigation__item">
+          <router-link to="/logs" class="navigation__link">Logs</router-link>
+        </li>
         <li class="navigation__item" v-if="!isLoggedIn">                                          
           <router-link to="/login" class="navigation__link">Login</router-link>
         </li>

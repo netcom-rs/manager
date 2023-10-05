@@ -1,4 +1,5 @@
 <template>
+  <h1>Last hour</h1>
     <div id="chart">
       <Bar id="my-chart-id" :options="chartOptions" v-if="loaded" :data="chartData" />
     </div>
@@ -24,11 +25,16 @@ export default {
     chartOptions: {
       responsive: true
     },
-    timer: null
+    return: {
+      timer: null
+    }
   }),
   async mounted () {
     this.api();
     this.timer = setInterval(this.api, 5000);
+  },
+  unmounted() {
+    clearInterval(this.timer);
   },
   methods: {
     cancelAutoUpdate() {
@@ -87,7 +93,7 @@ export default {
           datasets: [
             {
               label: 'Access-Accept',
-              backgroundColor: '#f87979',
+              backgroundColor: '#41B883',
               data: this.data1['users']
             }
           ]
@@ -98,7 +104,7 @@ export default {
         console.error(e)
       }
     }
-  }
+  },
 }
 </script>
 <style scoped>

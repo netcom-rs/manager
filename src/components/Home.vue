@@ -1,6 +1,7 @@
 <template>                                                                   
     <div>                                                                      
-      <h1>Monitoring Data Overview</h1>                                            
+      <h1>Monitoring Data Overview</h1>
+      <p>Last hour</p>
     </div>
     <div id="chart">
     <CountPage/>

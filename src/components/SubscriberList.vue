@@ -5,6 +5,7 @@
         :rows="filteredUsers"
         :search-options="{ enabled: true, placeholder: 'Search Users' }"
         :paginate="true"
+        :pagination-options="{ enabled: true, perPage: 10 }"
         :lineNumbers="true"
         @change="changeCell">
         <template #table-row="props">

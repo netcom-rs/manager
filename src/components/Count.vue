@@ -12,9 +12,9 @@
 </template>
                                                                                
 <script>
-import { Bar } from 'vue-chartjs'
+import { Bar, Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'vue-chartjs'
+//import { Doughnut } from 'vue-chartjs'
 import {
   CategoryScale,
   LinearScale,
@@ -29,10 +29,11 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointE
 export default {                                                             
   name: 'CountPage',                                                              
   components: {
-    Doughnut,
+    //Doughnut,
     //Line,
     Bar,
-  },
+    Doughnut
+},
   data () {
     return {
       loaded: false,
@@ -52,7 +53,6 @@ export default {
   methods: {
     async api () {
       //this.loaded = false
-    
       try {
         const response = await api.get('https://fr-api.netcoms.rs/api/v1/auth/count', {                 
              headers: {                       
@@ -68,12 +68,13 @@ export default {
         });
         if (response) {
             this.data = response.data;
+        } else {
+            this.data = [1,1];
         }
         if (response1) {
             this.data1 = response1.data;
-            console.log(this.data1);
         } else {
-            this.data1 = 10;
+            this.data1 = [0,0];
         }
         this.chartData = {
           labels: ['Accept', 'Reject'],

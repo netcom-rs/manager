@@ -6,11 +6,12 @@ import SubscriberList from './components/SubscriberList.vue';
 import SubscriberDetails from './components/SubscriberDetails.vue';
 import RadiusStats from './components/SubscriberRejects.vue';
 import SubscriberForm from './components/SubscriberForm.vue';
+import SubscriberLogs from './components/Logs.vue';
 import api from './api';
                                                                              
 const routes = [                                                             
   {                                                                          
-    path: '/manager',                                                               
+    path: '/',                                                               
     name: 'Home',                                                            
     component: HomePage,
     meta: {                                                                  
@@ -18,12 +19,12 @@ const routes = [
     },
   },
   {
-    path: '/manager/login',
+    path: '/login',
     name: 'Login',
     component: Login,
   },
   {
-    path: '/manager/logout',
+    path: '/logout',
     beforeEnter(to, from, next) {
       localStorage.removeItem('token');
       next('/login');
@@ -31,7 +32,7 @@ const routes = [
     name: 'Logout',
   },
   {                                                                          
-    path: '/manager/subscribers',                                                    
+    path: '/subscribers',                                                    
     name: 'SubscriberList',                                                  
     component: SubscriberList,
     meta: {                                                                  
@@ -39,7 +40,7 @@ const routes = [
     },
   },
   {
-     path: '/manager/subscribers/:id',
+     path: '/subscribers/:id',
      name: 'SubscriberDetails',
      component: SubscriberDetails,
       meta: {
@@ -47,7 +48,7 @@ const routes = [
       },
   },
   {
-    path: '/manager/add',
+    path: '/add',
     name: 'SubscriberForm',
     component: SubscriberForm,
       meta: {
@@ -55,9 +56,17 @@ const routes = [
       },
   },
   {
-    path: '/manager/stats',
+    path: '/stats',
     name: 'Statistics',
     component: RadiusStats,
+      meta: {
+        requiresAuth: true,
+      },
+  },
+  {
+    path: '/logs',
+    name: 'SubscriberLogs',
+    component: SubscriberLogs,
       meta: {
         requiresAuth: true,
       },
@@ -65,8 +74,8 @@ const routes = [
 ];                                                                           
                                                                              
 const router = createRouter({
-  mode: 'history',
   history: createWebHistory('/manager/'),
+  base: process.env.BASE_URL,
   routes,                                                                    
 });
 
