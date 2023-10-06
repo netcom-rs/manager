@@ -49,7 +49,7 @@ export default {
         { label: 'ID', field: 'id' },
         { label: 'Username', field: 'username' },
         { label: 'MAC', field: 'mac' },
-        { label: 'VLAN-ID', field: 'value' },
+        { label: 'VLAN-ID', field: 'vlan' },
         { label: 'Edit', field: 'edit' },
         { label: 'Remove', field: 'remove' }
       ],
@@ -93,7 +93,7 @@ export default {
         id: user.id,
         username: user.username,
         mac: user.mac,
-        value: user.value
+        vlan: user.vlan
       };
       try {
         // Make an API call to update the user data
