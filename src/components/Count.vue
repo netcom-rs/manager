@@ -106,24 +106,25 @@ export default {
 </script>
 <style scoped>
 #chart {
-  width: 100%;
+  width: 40%;
   height: 100%;
-  margin: 0 left;
+  margin: 20 left;
   float: left;
 }
 #chart1 {
-  width: 100%;
+  width: 40%;
   height: 100%;
-  margin: 0 right;
+  margin: right 20;
   float: right;
 }
+/**
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1px 1fr; /* Two columns with a 1px vertical divider in the middle */
-  grid-template-rows: 1fr 1px 1fr; /* Two rows with a 1px horizontal divider in the middle */
+  grid-template-columns: 1fr 1px 1fr; /* Two columns with a 1px vertical divider in the middle
+  grid-template-rows: 1fr 1px 1fr; /* Two rows with a 1px horizontal divider in the middle
   width: 100%;
   height: 100%; /* Adjust the height as needed */
-}
+/*/
 /**
 #chart, #chart1 {
   width: 100%;
@@ -131,7 +132,7 @@ export default {
   margin: 0 center;
   float: left;
 }
-*/
+
 #divider-vertical {
   background-color: #000;
   grid-row: 1 / span 3;
@@ -145,5 +146,5 @@ export default {
   grid-column: 1 / span 3;
   width: 100%;
 }
-
+*/
 </style>

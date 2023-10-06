@@ -1,5 +1,6 @@
 <template>
     <div id="search">
+      <h1>Subscribers</h1>
       <vue-good-table
         :columns="columns"
         :rows="filteredUsers"
@@ -20,7 +21,7 @@
           </button>
         </span>
         <span v-else>
-          <span v-if="props.column.field == 'username' && props.row.isEditable">
+          <span v-if="props.column.field && props.row.isEditable">
             <input v-model="props.row[props.column.field]" @change="saveChanges(props.row)"/>
           </span>
           <span v-else>
@@ -84,11 +85,23 @@ export default {
             }
     },
     async saveChanges(user) {
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      };
+      const payload = {
+        id: user.id,
+        username: user.username,
+        mac: user.mac,
+        value: user.value
+      };
       try {
         // Make an API call to update the user data
-        await api.put(`/users/${user.username}`, user);
+        await api.put(`/users/${user.username}`, payload, {headers});
         user.editing = false; // Disable editing after successful API call
         console.log(`User with ID ${user.id} updated successfully!`);
+        //refresh vue good table
+        this.refresh();
       } catch (error) {
         console.error('Error updating user:', error);
         // Handle error scenarios, show error messages, etc.
@@ -120,6 +133,21 @@ export default {
         // Handle error scenarios, show error messages, etc.
       }
     },
+    async refresh() {
+    // Fetch data from your API endpoint using Axios
+    api.get('/users/list', {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+      }
+    })
+      .then(response => {
+        this.users = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    },
     },
   computed: {
     filteredUsers() {
@@ -148,11 +176,9 @@ export default {
 </script>
 
 <style scoped>
-.search {
+#search {
   width: 100%;
   height: 100%;
-  margin: 0 left;
-  /**float: none; */
   position: relative;
 }
 </style>
