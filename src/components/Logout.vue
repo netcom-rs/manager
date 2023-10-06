@@ -6,14 +6,15 @@
     </div>                                                                                                                                            
   </template>                                                                                                                                         
                                                                                                                                                       
-  <script>                                                                                                                                            
+  <script>
+  import api from '../api';
   export default {
     name: 'LogoutPage',
     methods: {                                                                                                                                        
       logout() {                                                                                                                                      
         // Make a request to the external API to logout                                                                                               
         // You can use Axios or any other HTTP library for this                                                                                       
-        axios.post('/logout')                                                                                                                         
+        api.post('/logout')                                                                                                                         
           .then(() => {                                                                                                                               
             // Clear the user's session or access token from client-side storage                                                                      
             localStorage.removeItem('accessToken');                                                                                                   
